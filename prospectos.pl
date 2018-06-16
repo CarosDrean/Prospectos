@@ -74,6 +74,16 @@ consejoseis('Consejo 6').
 consejosiete('Consejo 7').
 consejoocho('Consejo 8').
 
+consejouno2('Consejo 1').
+consejodos2('Consejo 2').
+consejotres2('Consejo 3').
+consejocuatro2('Consejo 4').
+consejocinco2('Consejo 5').
+consejoseis2('Consejo 6').
+consejosiete2('Consejo 7').
+consejoocho2('Consejo 8').
+
+
 
 % problemas: aqui es para mas o menos encontrar los problemas segun los
 % datos que ingresara el usuario
@@ -85,13 +95,14 @@ problema_tiempo(X,R):-X < 5, X > 2, R is 2; R is 1.
 
 % soluciones: de acuerdo a los problemas que se hayan encontrado se
 % plantearan determinadas soluciones, dependiendo del caso
-solucion(X,R,C):-(problema(X,RE), ((RE = 1, C = 3, consejotres(R));(RE = 2, C = 3, consejotres(R))));
-(problema(X,RE), ((RE = 1, C = 5, consejocinco(R));(RE = 2, C = 5, consejocinco(R))));
-(problema(X,RE), ((RE = 1, C = 8, consejoocho(R));(RE = 2, C = 8, consejoocho(R))));
-(problema_dos(X,RE), ((RE = 1, C = 6, consejoseis(R));(RE = 2, C = 6, consejoseis(R))));
-(problema_dos(X,RE), ((RE = 1, C = 7, consejosiete(R));(RE = 2, C = 7, consejosiete(R))));
-(problema_inverso(X,RE), ((RE = 1, C = 4, consejocuatro(R));(RE = 2, C = 4, consejocuatro(R))));
-(problema_proyecto(X,RE), ((RE = 1, C = 1, consejouno(R));(RE = 2, C = 1, consejouno(R))));
+solucion_letra(X,R,C):-(problema(X,RE), ((RE = 1, C = 3, consejotres(R));(RE = 2, C = 3, consejotres2(R))));
+(problema(X,RE), ((RE = 1, C = 5, consejocinco(R));(RE = 2, C = 5, consejocinco2(R))));
+(problema(X,RE), ((RE = 1, C = 4, consejoocho(R));(RE = 2, C = 4, consejoocho2(R))));
+(problema_dos(X,RE), ((RE = 1, C = 6, consejoseis(R));(RE = 2, C = 6, consejoseis2(R))));
+(problema_dos(X,RE), ((RE = 1, C = 7, consejosiete(R));(RE = 2, C = 7, consejosiete2(R))));
+(problema_inverso(X,RE), ((RE = 1, C = 8, consejoocho(R));(RE = 2, C = 8, consejoocho2(R)))).
+
+solucion_num(X,R,C):-(problema_proyecto(X,RE), ((RE = 1, C = 1, consejouno(R));(RE = 2, C = 1, consejouno(R))));
 (problema_tiempo(X,RE), ((RE = 1, C = 2, consejodos(R));(RE = 2, C = 2, consejodos(R)))).
 
 

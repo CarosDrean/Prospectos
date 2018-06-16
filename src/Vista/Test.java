@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import java.util.HashMap;
 import java.util.Map;
 import org.jpl7.Query;
 import org.jpl7.Term;
@@ -19,9 +20,13 @@ public class Test extends javax.swing.JFrame {
      * Creates new form Test
      */
     
-    String nombre;
-    public Test(String nombre) {
+    private final String nombre;
+    private final String perfil;
+    private final String[] lugar = {"trabajo equipo", "adaptacion", "miedo fracaso"};
+    
+    public Test(String nombre, String perfil) {
         this.nombre = nombre;
+        this.perfil = perfil;
         initComponents();
         inicializar();
         conexion();
@@ -40,61 +45,78 @@ public class Test extends javax.swing.JFrame {
         gCambio = new javax.swing.ButtonGroup();
         gTemorFracaso = new javax.swing.ButtonGroup();
         gRendirse = new javax.swing.ButtonGroup();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        txtTitulo = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        btnSiguiente = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        home = new javax.swing.JPanel();
+        inicial = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         rbSite = new javax.swing.JRadioButton();
         rbNote = new javax.swing.JRadioButton();
         rbAveceste = new javax.swing.JRadioButton();
-        jLabel6 = new javax.swing.JLabel();
         rbSica = new javax.swing.JRadioButton();
         rbNoca = new javax.swing.JRadioButton();
         rbAvecesca = new javax.swing.JRadioButton();
+        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         rbSitf = new javax.swing.JRadioButton();
         rbNotf = new javax.swing.JRadioButton();
         rbAvecestf = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
-        rbSirf = new javax.swing.JRadioButton();
-        rbNorf = new javax.swing.JRadioButton();
         rbAvecesrf = new javax.swing.JRadioButton();
+        rbNorf = new javax.swing.JRadioButton();
+        rbSirf = new javax.swing.JRadioButton();
+        btnSiguiente = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        segundal = new javax.swing.JPanel();
+        header = new javax.swing.JPanel();
+        txtTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(238, 238, 238));
+        home.setBackground(new java.awt.Color(238, 238, 238));
+        home.setLayout(new java.awt.CardLayout());
 
-        jPanel2.setBackground(new java.awt.Color(70, 136, 240));
+        inicial.setBackground(new java.awt.Color(238, 238, 238));
 
-        txtTitulo.setFont(new java.awt.Font("Roboto Cn", 0, 33)); // NOI18N
-        txtTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        txtTitulo.setText("Test");
+        jLabel4.setFont(new java.awt.Font("Roboto Cn", 0, 18)); // NOI18N
+        jLabel4.setText("1. ¿Te sientes a gusto trabajando en equipo?");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(txtTitulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(txtTitulo)
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
+        rbSite.setText("Si");
 
-        jLabel2.setBackground(new java.awt.Color(70, 136, 240));
-        jLabel2.setFont(new java.awt.Font("Roboto Cn", 0, 30)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(70, 136, 240));
-        jLabel2.setText("Responde las siguientes preguntas:");
+        rbNote.setText("No");
+
+        rbAveceste.setSelected(true);
+        rbAveceste.setText("A veces");
+
+        rbSica.setText("Si");
+
+        rbNoca.setText("No");
+
+        rbAvecesca.setSelected(true);
+        rbAvecesca.setText("A veces");
+
+        jLabel6.setFont(new java.awt.Font("Roboto Cn", 0, 18)); // NOI18N
+        jLabel6.setText("2. ¿Cuando hay cambios te adaptas facilmente?");
+
+        jLabel7.setFont(new java.awt.Font("Roboto Cn", 0, 18)); // NOI18N
+        jLabel7.setText("3. ¿Te atemoriza fracasar?");
+
+        rbSitf.setText("Si");
+
+        rbNotf.setText("No");
+
+        rbAvecestf.setSelected(true);
+        rbAvecestf.setText("A veces");
+
+        jLabel8.setFont(new java.awt.Font("Roboto Cn", 0, 18)); // NOI18N
+        jLabel8.setText("4. ¿Te rindes con facilidad?");
+
+        rbAvecesrf.setSelected(true);
+        rbAvecesrf.setText("A veces");
+
+        rbNorf.setText("No");
+
+        rbSirf.setText("Si");
 
         btnSiguiente.setBackground(new java.awt.Color(0, 150, 136));
         btnSiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -125,162 +147,185 @@ public class Test extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel2.setBackground(new java.awt.Color(70, 136, 240));
+        jLabel2.setFont(new java.awt.Font("Roboto Cn", 0, 30)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(70, 136, 240));
+        jLabel2.setText("Responde las siguientes preguntas:");
+
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/servicios-7.png"))); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Roboto Cn", 0, 18)); // NOI18N
-        jLabel4.setText("1. ¿Te sientes a gusto trabajando en equipo?");
-
-        rbSite.setText("Si");
-
-        rbNote.setText("No");
-
-        rbAveceste.setSelected(true);
-        rbAveceste.setText("A veces");
-
-        jLabel6.setFont(new java.awt.Font("Roboto Cn", 0, 18)); // NOI18N
-        jLabel6.setText("2. ¿Cuando hay cambios te adaptas facilmente?");
-
-        rbSica.setText("Si");
-
-        rbNoca.setText("No");
-
-        rbAvecesca.setSelected(true);
-        rbAvecesca.setText("A veces");
-
-        jLabel7.setFont(new java.awt.Font("Roboto Cn", 0, 18)); // NOI18N
-        jLabel7.setText("3. ¿Te atemoriza fracasar?");
-
-        rbSitf.setText("Si");
-
-        rbNotf.setText("No");
-
-        rbAvecestf.setSelected(true);
-        rbAvecestf.setText("A veces");
-
-        jLabel8.setFont(new java.awt.Font("Roboto Cn", 0, 18)); // NOI18N
-        jLabel8.setText("4. ¿Te rindes con facilidad?");
-
-        rbSirf.setText("Si");
-
-        rbNorf.setText("No");
-
-        rbAvecesrf.setSelected(true);
-        rbAvecesrf.setText("A veces");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(rbSite)
-                .addGap(33, 33, 33)
-                .addComponent(rbNote)
-                .addGap(27, 27, 27)
-                .addComponent(rbAveceste)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout inicialLayout = new javax.swing.GroupLayout(inicial);
+        inicial.setLayout(inicialLayout);
+        inicialLayout.setHorizontalGroup(
+            inicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inicialLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addGroup(inicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inicialLayout.createSequentialGroup()
+                        .addGroup(inicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(inicialLayout.createSequentialGroup()
+                                .addGroup(inicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addGroup(inicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(inicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel8)
+                                            .addGroup(inicialLayout.createSequentialGroup()
+                                                .addGap(19, 19, 19)
+                                                .addComponent(rbSirf)
+                                                .addGap(33, 33, 33)
+                                                .addComponent(rbNorf)
+                                                .addGap(27, 27, 27)
+                                                .addComponent(rbAvecesrf)))
+                                        .addGroup(inicialLayout.createSequentialGroup()
+                                            .addGap(19, 19, 19)
+                                            .addComponent(rbSitf)
+                                            .addGap(33, 33, 33)
+                                            .addComponent(rbNotf)
+                                            .addGap(27, 27, 27)
+                                            .addComponent(rbAvecestf)))
+                                    .addGroup(inicialLayout.createSequentialGroup()
                                         .addGap(19, 19, 19)
-                                        .addComponent(rbSirf)
+                                        .addComponent(rbSica)
                                         .addGap(33, 33, 33)
-                                        .addComponent(rbNorf)
+                                        .addComponent(rbNoca)
                                         .addGap(27, 27, 27)
-                                        .addComponent(rbAvecesrf)))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(19, 19, 19)
-                                    .addComponent(rbSitf)
-                                    .addGap(33, 33, 33)
-                                    .addComponent(rbNotf)
-                                    .addGap(27, 27, 27)
-                                    .addComponent(rbAvecestf)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(rbSica)
-                                .addGap(33, 33, 33)
-                                .addComponent(rbNoca)
-                                .addGap(27, 27, 27)
-                                .addComponent(rbAvecesca)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                                        .addComponent(rbAvecesca)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(inicialLayout.createSequentialGroup()
+                                .addGroup(inicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(inicialLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbSite)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(rbNote)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(rbAveceste))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(inicialLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jLabel5)
-                        .addGap(64, 64, 64))))
+                        .addGap(68, 68, 68))
+                    .addGroup(inicialLayout.createSequentialGroup()
+                        .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(jLabel2)
-                .addGap(31, 31, 31)
-                .addComponent(jLabel4)
+        inicialLayout.setVerticalGroup(
+            inicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inicialLayout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(inicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbSite)
                     .addComponent(rbNote)
                     .addComponent(rbAveceste))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(inicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inicialLayout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGap(18, 18, 18)
+                        .addGroup(inicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rbSica)
                             .addComponent(rbNoca)
                             .addComponent(rbAvecesca))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(inicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rbSitf)
                             .addComponent(rbNotf)
                             .addComponent(rbAvecestf)))
                     .addComponent(jLabel5))
-                .addGap(15, 15, 15)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(inicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbSirf)
                     .addComponent(rbNorf)
                     .addComponent(rbAvecesrf))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addGap(27, 27, 27))
+        );
+
+        home.add(inicial, "card3");
+
+        javax.swing.GroupLayout segundalLayout = new javax.swing.GroupLayout(segundal);
+        segundal.setLayout(segundalLayout);
+        segundalLayout.setHorizontalGroup(
+            segundalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 710, Short.MAX_VALUE)
+        );
+        segundalLayout.setVerticalGroup(
+            segundalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 499, Short.MAX_VALUE)
+        );
+
+        home.add(segundal, "card3");
+
+        header.setBackground(new java.awt.Color(70, 136, 240));
+
+        txtTitulo.setFont(new java.awt.Font("Roboto Cn", 0, 33)); // NOI18N
+        txtTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        txtTitulo.setText("Test");
+
+        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
+        header.setLayout(headerLayout);
+        headerLayout.setHorizontalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(txtTitulo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        headerLayout.setVerticalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(txtTitulo)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(home, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 4, Short.MAX_VALUE))
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(home, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSiguienteMouseClicked
-        System.out.println(gTrabajoEquipo.getSelection().getActionCommand());        
+        Map<String, String> nombres = new HashMap<>();
+        Map <String, String> consejos = new HashMap<>();
+        int[] problemas = {3, 5, 8};        
+        String[] seleccion = {gTrabajoEquipo.getSelection().getActionCommand(), 
+            gCambio.getSelection().getActionCommand(), gTemorFracaso.getSelection().getActionCommand()};
+        
+        for (int i = 0; i < problemas.length; i++) {
+            consejos.put(lugar[i], consejoLetra(seleccion[i], problemas[i]));
+            nombres.put(lugar[i], datos(seleccion[i], perfil, lugar[i]));            
+        }
+        
+        Resultados r = new Resultados(nombre, perfil, consejos, nombres);
+        this.dispose();
+        r.show();
+        
     }//GEN-LAST:event_btnSiguienteMouseClicked
 
     /**
@@ -313,7 +358,7 @@ public class Test extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Test("").setVisible(true);
+                new Test("","").setVisible(true);
             }
         });
     }
@@ -324,6 +369,9 @@ public class Test extends javax.swing.JFrame {
     private javax.swing.ButtonGroup gRendirse;
     private javax.swing.ButtonGroup gTemorFracaso;
     private javax.swing.ButtonGroup gTrabajoEquipo;
+    private javax.swing.JPanel header;
+    private javax.swing.JPanel home;
+    private javax.swing.JPanel inicial;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -331,8 +379,6 @@ public class Test extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton rbAvecesca;
     private javax.swing.JRadioButton rbAvecesrf;
     private javax.swing.JRadioButton rbAveceste;
@@ -345,51 +391,18 @@ public class Test extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbSirf;
     private javax.swing.JRadioButton rbSite;
     private javax.swing.JRadioButton rbSitf;
+    private javax.swing.JPanel segundal;
     private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables
 
-    void inicializar(){
+    private void inicializar(){
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         radioButtons();
-        System.out.println(nombre);
         txtTitulo.setText(txtTitulo.getText() + " para " + nombre);
-    }
+    }   
     
-    void radioButtons(){
-        rbAvecesca.setActionCommand("A veces");
-        rbAvecesrf.setActionCommand("A veces");
-        rbAveceste.setActionCommand("A veces");
-        rbAvecestf.setActionCommand("A veces");
-        
-        rbSica.setActionCommand("Si");
-        rbSirf.setActionCommand("Si");
-        rbSite.setActionCommand("Si");
-        rbSitf.setActionCommand("Si");
-        
-        rbNoca.setActionCommand("No");
-        rbNorf.setActionCommand("No");
-        rbNote.setActionCommand("No");
-        rbNotf.setActionCommand("No");
-        
-        gTrabajoEquipo.add(rbSite);
-        gTrabajoEquipo.add(rbNote);
-        gTrabajoEquipo.add(rbAveceste);
-        
-        gCambio.add(rbSica);
-        gCambio.add(rbNoca);
-        gCambio.add(rbAvecesca);
-        
-        gTemorFracaso.add(rbSitf);
-        gTemorFracaso.add(rbNotf);
-        gTemorFracaso.add(rbAvecestf);
-        
-        gRendirse.add(rbSirf);
-        gRendirse.add(rbNorf);
-        gRendirse.add(rbAvecesrf);
-    }
-    
-    void conexion(){
+    private void conexion(){
         String conexion = "consult('prospectos.pl')";
         Query cn = new Query(conexion);
         System.out.println(conexion + " " + (cn.hasMoreSolutions()?"Aceptado": "Error"));
@@ -408,7 +421,22 @@ public class Test extends javax.swing.JFrame {
         }*/
     }
     
-    String ejecutarUnDato(String texto, String k){
+    private String datos(String dato, String perfil, String lugar){
+        String consulta = "datos_te('" + dato + "',N,R," + perfil + ")";
+        if(lugar.equals(this.lugar[1])){
+            consulta = "datos_adap('" + dato + "',N,R," + perfil + ")";
+        }else if(lugar.equals(this.lugar[2])){
+            consulta = "datos_mf('" + dato + "',N,R," + perfil + ")";
+        }        
+        return ejecutarUnDato(consulta, "N");
+    }
+    
+    private String consejoLetra(String dato, int contexto){
+        String consulta = "solucion_letra('" + dato + "',R," + contexto + ")";
+        return ejecutarUnDato(consulta, "R");
+    }
+    
+    private String ejecutarUnDato(String texto, String k){
         Query consulta = new Query(texto);
         if(consulta.hasSolution()){
             return consulta.oneSolution().get(k).toString();
@@ -417,13 +445,46 @@ public class Test extends javax.swing.JFrame {
         }
     }
     
-    Map<String, Term>[] consultaVariosDatos(String texto){
+    private Map<String, Term>[] consultaVariosDatos(String texto){
         Query consulta = new Query(texto);
         if(consulta.hasSolution()){
             return consulta.allSolutions();
         }else {
             return null;
         }
+    }
+    
+    private void radioButtons(){
+        rbAvecesca.setActionCommand("a veces");
+        rbAvecesrf.setActionCommand("a veces");
+        rbAveceste.setActionCommand("a veces");
+        rbAvecestf.setActionCommand("a veces");
+        
+        rbSica.setActionCommand("si");
+        rbSirf.setActionCommand("si");
+        rbSite.setActionCommand("si");
+        rbSitf.setActionCommand("si");
+        
+        rbNoca.setActionCommand("no");
+        rbNorf.setActionCommand("no");
+        rbNote.setActionCommand("no");
+        rbNotf.setActionCommand("no");
+        
+        gTrabajoEquipo.add(rbSite);
+        gTrabajoEquipo.add(rbNote);
+        gTrabajoEquipo.add(rbAveceste);
+        
+        gCambio.add(rbSica);
+        gCambio.add(rbNoca);
+        gCambio.add(rbAvecesca);
+        
+        gTemorFracaso.add(rbSitf);
+        gTemorFracaso.add(rbNotf);
+        gTemorFracaso.add(rbAvecestf);
+        
+        gRendirse.add(rbSirf);
+        gRendirse.add(rbNorf);
+        gRendirse.add(rbAvecesrf);
     }
 
 }

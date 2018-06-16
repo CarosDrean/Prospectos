@@ -213,7 +213,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    void inicializar(){
+    private void inicializar(){
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         descripcion.setText("Este proyecto es un experimento creado para analizar ciertas caracteristicas \n" +
